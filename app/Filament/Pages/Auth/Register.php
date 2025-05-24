@@ -22,8 +22,7 @@ class Register extends BaseRegister
             // 'kelas_id' => $data['kelas_id'],
             'password' => $data['password'],
         ]);
-
-        // $user->assignRole('mahasiswa');
+        $user->assignRole('mahasiswa');
 
         return $user;
     }

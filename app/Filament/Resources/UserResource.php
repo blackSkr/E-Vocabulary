@@ -74,6 +74,10 @@ class UserResource extends Resource
                         $set('prodi_id', null);
                     }
                 }),
+            Forms\Components\Select::make('roles')
+                ->multiple()
+                ->preload()
+                ->relationship('roles', 'name'),
             ]);
     }
 
