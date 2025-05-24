@@ -52,13 +52,13 @@ class AdminPanelProvider extends PanelProvider
             ->navigationGroups([
                 NavigationGroup::make()
                     ->label('Manajemen Data')
-                    ->icon('heroicon-m-bookmark-square'),
+                    ->icon('heroicon-o-bookmark-square'),
                 NavigationGroup::make()
                     ->label('Manejemen Pengguna')
-                    ->icon('heroicon-m-cog-6-tooth'),
+                    ->icon('heroicon-o-cog-8-tooth'),
                 NavigationGroup::make()
                     ->label('Manajemen Kosakata')
-                    ->icon('heroicon-m-book-open')
+                    ->icon('heroicon-o-book-open')
                     // ->sort(-1)
 
             ])

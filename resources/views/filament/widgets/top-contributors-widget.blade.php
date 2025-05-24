@@ -16,6 +16,9 @@
                             <span class="text-sm text-gray-500 dark:text-gray-400">
                                 NIM: {{ $user['nim'] ?? '-' }}
                             </span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400">
+                                Program Studi : {{ $user['prodi']  }}
+                            </span>
                         </div>
                     </div>
                     <div class="text-right">

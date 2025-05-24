@@ -12,7 +12,8 @@ class Prodi extends Model
     use HasFactory, HasUlids;
 
     protected $table = "prodi";
-
+    public $incrementing = false; 
+    protected $keyType = 'string';
     protected $fillable = [
         'nama_prodi',
         'status',

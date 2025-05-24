@@ -15,20 +15,21 @@ class TopContributorsWidget extends Widget
     protected function getViewData(): array
     {
         // Ambil 5 user teratas berdasarkan jumlah kosakata
-        $topUsers = Kosakata::select('user_id', DB::raw('count(*) as total'))
-            ->groupBy('user_id')
-            ->orderByDesc('total')
-            ->with('user') // Eager load relasi user
-            ->take(5)
-            ->get()
-            ->map(function ($item) {
-                return [
-                    'id' => $item->user->id,
-                    'name' => $item->user?->name ?? 'Tidak diketahui',
-                    'total' => $item->total,
-                    'nim' => $item->user->nim ?? 'Tidak ada NIM',
-                ];
-            });
+$topUsers = User::with('prodi')
+    ->withCount('kosakatas') // hitung relasi kosakata
+    ->orderByDesc('kosakatas_count')
+    ->take(5)
+    ->get()
+    ->map(function ($user) {
+        return [
+            'id' => $user->id,
+            'name' => $user->name ?? 'Tidak diketahui',
+            'total' => $user->kosakatas_count,
+            'nim' => $user->nim ?? 'Tidak ada NIM',
+            'prodi' => $user->prodi->nama_prodi ?? 'Tidak Memiliki Program Studi',
+        ];
+    });
+
 
         return [
             'topUsers' => $topUsers,
