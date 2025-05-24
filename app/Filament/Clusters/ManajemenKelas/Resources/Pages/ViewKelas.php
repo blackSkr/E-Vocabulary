@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\KelasResource\Pages;
+namespace App\Filament\Clusters\ManajemenKelas\Resources\Pages;
 
+use App\Filament\Clusters\ManajemenKelas\Resources\KelasResource as ResourcesKelasResource;
 use App\Filament\Resources\KelasResource;
 use Filament\Resources\Pages\ViewRecord;
 use Filament\Infolists\Infolist;
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ViewKelas extends ViewRecord
 {
-    protected static string $resource = KelasResource::class;
+    protected static string $resource = ResourcesKelasResource::class;
 
         public function getInfolists(): array
         {

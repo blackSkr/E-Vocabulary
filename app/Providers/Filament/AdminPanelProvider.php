@@ -24,11 +24,25 @@ class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
+//         dd([
+//     'resources' => $panel->getResources(),
+//     'pages' => $panel->getPages(),
+//     'widgets' => $panel->getWidgets(),
+//     'middlewares' => $panel->getMiddlewares(),
+// ]);
+
         return $panel
+        
             ->default()
             ->id('admin')
             ->path('admin')
             ->login()
+            ->brandName('UPTVocab')
+            ->discoverClusters(
+                in: app_path('Filament/Clusters'),
+                for: 'App\\Filament\\Clusters'
+            )
+            // ->discoverClusters(in: app_path('Filament/Clusters'))
             ->registration(Register::class) 
             ->colors([
                 // 'primary' => Color::Amber,
@@ -37,13 +51,14 @@ class AdminPanelProvider extends PanelProvider
                         
             ->navigationGroups([
                 NavigationGroup::make()
-                    ->label('Manajemen Data'),
+                    ->label('Manajemen Data')
+                    ->icon('heroicon-m-bookmark-square'),
                 NavigationGroup::make()
                     ->label('Manejemen Pengguna')
                     ->icon('heroicon-m-cog-6-tooth'),
                 NavigationGroup::make()
                     ->label('Manajemen Kosakata')
-                    ->icon('heroicon-m-underline')
+                    ->icon('heroicon-m-book-open')
                     // ->sort(-1)
 
             ])
@@ -71,5 +86,8 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ]);
+            
     }
+    
+    
 }

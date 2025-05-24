@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\KelasResource\Pages;
+namespace App\Filament\Clusters\ManajemenKelas\Resources\Pages;
 
-use App\Filament\Resources\KelasResource;
+use App\Filament\Clusters\ManajemenKelas\Resources\KelasResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 

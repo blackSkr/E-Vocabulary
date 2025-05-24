@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Clusters\ManajemenKelas\Resources;
 
-use App\Filament\Resources\KelasResource\Pages;
+use App\Filament\Clusters\ManajemenKelas\Resources\Pages;
 use App\Filament\Resources\KelasResource\RelationManagers;
 use App\Models\Kelas;
 use Filament\Forms;
@@ -20,9 +20,12 @@ use Filament\Tables\Actions\ViewAction;
 class KelasResource extends Resource
 {
     protected static ?string $model = Kelas::class;
+    protected static ?string $cluster = \App\Filament\Clusters\ManajemenKelas::class;
 
     // protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationGroup = "Manajemen Data";
+    // protected static ?string $navigationGroup = "Manajemen Data";
+    protected static ?string $navigationIcon = 'heroicon-o-bolt';
+
     protected static ?string $pluralModelLabel = "Kelas"; 
     public static function form(Form $form): Form
     {
