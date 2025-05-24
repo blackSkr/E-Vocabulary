@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Pages\Auth\Register;
+use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -54,12 +55,12 @@ class AdminPanelProvider extends PanelProvider
                     ->label('Manajemen Data')
                     ->icon('heroicon-o-bookmark-square'),
                 NavigationGroup::make()
-                    ->label('Manejemen Pengguna')
-                    ->icon('heroicon-o-cog-8-tooth'),
-                NavigationGroup::make()
                     ->label('Manajemen Kosakata')
-                    ->icon('heroicon-o-book-open')
+                    ->icon('heroicon-o-book-open'),
                     // ->sort(-1)
+                NavigationGroup::make()
+                    ->label('Manajemen Pengguna')
+                    ->icon('heroicon-o-cog-8-tooth'),
 
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
@@ -82,6 +83,24 @@ class AdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+            ])
+            ->plugins([
+                FilamentShieldPlugin::make()
+                    ->gridColumns([
+                        'default' => 1,
+                        'sm' => 2,
+                        'lg' => 3
+                    ])
+                    ->sectionColumnSpan(1)
+                    ->checkboxListColumns([
+                        'default' => 1,
+                        'sm' => 2,
+                        'lg' => 4,
+                    ])
+                    ->resourceCheckboxListColumns([
+                        'default' => 1,
+                        'sm' => 2,
+                    ]),
             ])
             ->authMiddleware([
                 Authenticate::class,

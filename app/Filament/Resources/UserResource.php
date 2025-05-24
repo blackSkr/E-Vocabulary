@@ -22,7 +22,7 @@ class UserResource extends Resource
     protected static ?string $model = User::class;
 
     // protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationGroup = "Manejemen Pengguna";
+    protected static ?string $navigationGroup = "Manajemen Pengguna";
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()->with('kosakatas');
@@ -146,6 +146,12 @@ public static function table(Table $table): Table
                 ->html()
                 ->wrap()
                 ->toggleable(isToggledHiddenByDefault: true),
+            Tables\Columns\TextColumn::make('roles.name')
+                    ->label('Roles')
+                    ->badge()
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
 
 
         ])
