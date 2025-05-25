@@ -10,6 +10,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -82,6 +83,7 @@ class KosakataResource extends Resource
                         Forms\Components\FileUpload::make('contoh_gambar')
                             ->label('Gambar Ilustrasi')
                             ->image()
+                            ->disk('public')
                             ->directory('kosakata/gambar')
                             ->imageEditor()
                             ->maxSize(2048)
@@ -127,10 +129,11 @@ public static function table(Table $table): Table
             Tables\Columns\TextColumn::make('slug')
                 ->sortable()
                 ->toggleable(isToggledHiddenByDefault: true),
-
             Tables\Columns\ImageColumn::make('contoh_gambar')
                 ->label('Gambar')
-                ->toggleable(isToggledHiddenByDefault: true),
+                ->disk('public'),
+                // ->disk('public')
+                // ->toggleable(isToggledHiddenByDefault: true),
             Tables\Columns\TextColumn::make('user.name')
                         ->label('Penginput')
                         ->searchable()
@@ -144,14 +147,14 @@ public static function table(Table $table): Table
                     'Ditolak' => 'danger',
                 }),
         ])
-        // ->filters([
-        //     Tables\Filters\SelectFilter::make('status')
-        //         ->options([
-        //             'Disetujui' => 'Disetujui',
-        //             'Ditinjau' => 'Ditinjau',
-        //             'Ditolak' => 'Ditolak',
-        //         ]),
-        // ])
+        ->filters([
+            Tables\Filters\SelectFilter::make('status')
+                ->options([
+                    'Disetujui' => 'Disetujui',
+                    'Ditinjau' => 'Ditinjau',
+                    'Ditolak' => 'Ditolak',
+                ]),
+        ])
         ->actions([
             Tables\Actions\ViewAction::make(),
             Tables\Actions\EditAction::make(),
@@ -173,7 +176,7 @@ public static function table(Table $table): Table
     }
     public static function getNavigationBadge(): ?string
     {
-        $pendingCount = static::getEloquentQuery()->where('status', 'pending')->count();
+        $pendingCount = static::getEloquentQuery()->where('status', 'Ditinjau')->count();
     
         return $pendingCount > 0 ? strval($pendingCount) : null;
     }
@@ -183,6 +186,8 @@ public static function table(Table $table): Table
             'index' => Pages\ListKosakatas::route('/'),
             'create' => Pages\CreateKosakata::route('/create'),
             'edit' => Pages\EditKosakata::route('/{record}/edit'),
+            'view' => Pages\ViewKosakata::route('/{record}'),
+
         ];
     }
 }
