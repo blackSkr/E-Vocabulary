@@ -131,7 +131,8 @@ public static function table(Table $table): Table
                 ->toggleable(isToggledHiddenByDefault: true),
             Tables\Columns\ImageColumn::make('contoh_gambar')
                 ->label('Gambar')
-                ->disk('public'),
+                ->disk('public')
+                ->toggleable(isToggledHiddenByDefault: true),
                 // ->disk('public')
                 // ->toggleable(isToggledHiddenByDefault: true),
             Tables\Columns\TextColumn::make('user.name')
@@ -146,7 +147,14 @@ public static function table(Table $table): Table
                     'Ditinjau' => 'success',
                     'Ditolak' => 'danger',
                 }),
+            Tables\Columns\TextColumn::make('created_at')
+                ->label('Dibuat')
+                ->dateTime('d M Y, H:i')
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
+
         ])
+        ->defaultSort('created_at', 'desc')
         ->filters([
             Tables\Filters\SelectFilter::make('status')
                 ->options([
