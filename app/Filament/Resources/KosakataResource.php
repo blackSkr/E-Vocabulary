@@ -19,7 +19,18 @@ class KosakataResource extends Resource
     protected static ?string $pluralModelLabel = "Kosaktata";
     // protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?string $navigationGroup = "Manajemen Kosakata";
+    public static function getEloquentQuery(): Builder
+    {
+        $query = parent::getEloquentQuery();
 
+        // Cek apakah user yang login adalah mahasiswa
+        if (auth()->user()->hasRole('mahasiswa')) {
+            // Tampilkan hanya kosakata yang dibuat oleh user itu sendiri
+            return $query->where('user_id', auth()->id());
+        }
+
+        return $query;
+    }
     public static function form(Form $form): Form
     {
         return $form
@@ -160,7 +171,12 @@ public static function table(Table $table): Table
             //
         ];
     }
-
+    public static function getNavigationBadge(): ?string
+    {
+        $pendingCount = static::getEloquentQuery()->where('status', 'pending')->count();
+    
+        return $pendingCount > 0 ? strval($pendingCount) : null;
+    }
     public static function getPages(): array
     {
         return [

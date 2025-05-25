@@ -11,6 +11,7 @@ class KosakataController extends Controller
 {
 public function index(Request $request): View
 {
+    
     $query = Kosakata::with('jenis_kosakata')
         ->where('status', 'Disetujui');
 
@@ -48,5 +49,6 @@ public function index(Request $request): View
 
     return view('halaman.landingpages.index', compact('terms', 'jenisKosakata'));
 }
+
 
 }
