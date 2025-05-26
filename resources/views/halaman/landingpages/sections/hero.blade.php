@@ -1,14 +1,18 @@
 <section id="section-hero">
-    <header class="pt-32 pb-20 bg-gradient-to-b from-white to-gray-50">
+<header class="relative pt-50 pb-32 bg-gradient-to-b from-white to-gray-50 bg-no-repeat bg-bottom bg-cover"
+        style="background-image: url('{{ asset('assets/background/bg-2.svg') }}');">
+
+        
         <div class="container mx-auto px-6">
             <div class="max-w-3xl mx-auto text-center">
                 <!-- Judul -->
-                <h1 class="pt-25 text-4xl md:text-5xl font-extrabold text-gray-800 mb-6 animate-slide-up">
-                    <span class="bg-gradient-to-r from-green-500 to-teal-500 bg-clip-text text-transparent drop-shadow-md">
+                <h1 class="pt-25 text-4xl md:text-5xl font-extrabold text-gray-800 mb-6 animate-slide-up"
+                    style="text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">
+                    <span class="text-indigo-950 drop-shadow-md">
                         Civil Engineering
                     </span> 
-                    Lexicon
                 </h1>
+
 
                 <!-- Deskripsi -->
                 <p class="text-lg text-gray-600 mb-8 animate-slide-up" style="animation-delay: 0.2s">
@@ -32,16 +36,16 @@
                         class="absolute right-3 top-1/2 transform -translate-y-1/2 text-green-600 hover:text-green-700 transition"
                         aria-label="Search"
                     >
-                        <i class="fas fa-search text-lg"></i>
+                        <i class="fas fa-search text-lg text-indigo-950"></i>
                     </button>
                 </form>
 
                 <!-- Contoh Kata -->
-                <div class="mt-8 animate-slide-up text-gray-500 text-sm" style="animation-delay: 0.6s">
-                    <span class="font-medium text-gray-400">Try: </span>
+                <div class="mt-8 animate-slide-up text-indigo-950 text-sm" style="animation-delay: 0.6s">
+                    <span class="font-medium text-indigo-950">Try: </span>
                     @foreach (['Beton', 'Beam', 'Pondasi'] as $term)
                         <a href="{{ route('kosakata.index', ['search' => $term]) }}"
-                        class="inline-block text-green-600 hover:underline hover:text-green-800 mx-1 transition duration-150">
+                        class="inline-block text-indigo-950 hover:underline hover:text-green-800 mx-1 transition duration-150">
                             {{ $term }}
                         </a>
                     @endforeach
@@ -49,5 +53,6 @@
 
             </div>
         </div>
+        
     </header>
 </section>
