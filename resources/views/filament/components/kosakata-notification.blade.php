@@ -1,8 +1,16 @@
 @php
     use App\Models\Kosakata;
 
-    $pendingItems = Kosakata::where('status', 'Ditinjau')->latest()->take(5)->get();
-    $approvedItems = Kosakata::where('status', 'Disetujui')->latest()->take(5)->get();
+    $user = auth()->user();
+
+    if ($user->hasRole('super_admin')) {
+        $pendingItems = Kosakata::where('status', 'Ditinjau')->latest()->take(5)->get();
+        $approvedItems = Kosakata::where('status', 'Disetujui')->latest()->take(5)->get();
+    } else {
+        $pendingItems = Kosakata::where('status', 'Ditinjau')->where('user_id', $user->id)->latest()->take(5)->get();
+        $approvedItems = Kosakata::where('status', 'Disetujui')->where('user_id', $user->id)->latest()->take(5)->get();
+    }
+
     $totalBadge = $pendingItems->count();
 @endphp
 
@@ -26,7 +34,9 @@
 
         <ul class="divide-y divide-gray-100">
             @forelse ($pendingItems as $item)
-                <a href="{{ route('filament.admin.resources.kosakatas.view', ['record' => $item->id]) }}">
+                @if (auth()->user()->hasRole('super_admin'))
+                    <a href="{{ route('filament.admin.resources.kosakatas.view', ['record' => $item->id]) }}">
+                @endif
                     <li class="px-4 py-3 hover:bg-gray-50 transition cursor-pointer">
                         <div class="flex justify-between items-center">
                             <span class="text-sm text-gray-700">
@@ -41,10 +51,12 @@
                             {{ $item->created_at->diffForHumans() }}
                         </div>
                     </li>
-                </a>
+                @if (auth()->user()->hasRole('super_admin'))
+                    </a>
+                @endif
             @empty
                 <li class="px-4 py-4 text-center text-sm text-gray-500">
-                    Tidak ada kosakata pending.
+                    Tidak ada kosakata Terbaru.
                 </li>
             @endforelse
         </ul>
@@ -61,7 +73,9 @@
 
         <ul class="divide-y divide-gray-100">
             @forelse ($approvedItems as $item)
-                <a href="{{ route('filament.admin.resources.kosakatas.view', ['record' => $item->id]) }}">
+                @if (auth()->user()->hasRole('super_admin'))
+                    <a href="{{ route('filament.admin.resources.kosakatas.view', ['record' => $item->id]) }}">
+                @endif
                     <li class="px-4 py-3 hover:bg-gray-50 transition cursor-pointer">
                         <div class="flex justify-between items-center">
                             <span class="text-sm text-gray-700">
@@ -76,7 +90,9 @@
                             {{ $item->updated_at->diffForHumans() }}
                         </div>
                     </li>
-                </a>
+                @if (auth()->user()->hasRole('super_admin'))
+                    </a>
+                @endif
             @empty
                 <li class="px-4 py-4 text-center text-sm text-gray-500">
                     Belum ada kosakata disetujui.
@@ -84,10 +100,12 @@
             @endforelse
         </ul>
 
-        <div class="p-2 border-t text-sm text-center">
-            <a href="{{ route('filament.admin.resources.kosakatas.index') }}" class="text-primary-600 hover:underline">
-                Lihat semua kosakata
-            </a>
-        </div>
+        @if (auth()->user()->hasRole('super_admin'))
+            <div class="p-2 border-t text-sm text-center">
+                <a href="{{ route('filament.admin.resources.kosakatas.index') }}" class="text-primary-600 hover:underline">
+                    Lihat semua kosakata
+                </a>
+            </div>
+        @endif
     </div>
 </x-filament::dropdown>
