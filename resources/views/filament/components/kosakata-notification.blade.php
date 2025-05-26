@@ -11,7 +11,7 @@
         <button class="relative focus:outline-none">
             <x-heroicon-o-bell class="w-6 h-6 text-gray-600 hover:text-primary-600 transition" />
             @if ($totalBadge > 0)
-                <span class="absolute -top-1 -right-1 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold text-white bg-blue-600 rounded-full shadow">
+                <span class="absolute -top-1 -right-1 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold text-black bg-yellow-400 rounded-full shadow">
                     {{ $totalBadge }}
                 </span>
             @endif
