@@ -65,10 +65,13 @@
 
     <!-- Menu Opsi -->
     <div id="menuOptions" class="opacity-0 scale-95 pointer-events-none transition-all duration-300 flex flex-col items-end space-y-2 fixed bottom-24 right-6 z-40">
-        <button class="flex items-center space-x-2 bg-white text-gray-800 px-3 py-1.5 rounded-lg shadow-lg hover:bg-gray-100 transform hover:scale-105 transition text-sm">
-            <i class="fas fa-flag text-green-600"></i>
-            <span>Laporan</span>
-        </button>
+        <div class="text-center">
+            <a href="/report" class="flex justify-center items-center space-x-2 bg-white text-gray-800 px-3 py-1.5 rounded-lg shadow-lg hover:bg-gray-100 transform hover:scale-105 transition text-sm">
+                <i class="fas fa-flag text-green-600"></i>
+                <span>Laporan</span>
+            </a>
+        </div>
+
         <button class="flex items-center space-x-2 bg-white text-gray-800 px-3 py-1.5 rounded-lg shadow-lg hover:bg-gray-100 transform hover:scale-105 transition text-sm">
             <i class="fas fa-phone text-green-600"></i>
             <span>Kontak</span>
