@@ -3,7 +3,9 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Pages\Auth\Register;
+use App\Models\Kosakata;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
+use Filament\Facades\Filament;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -106,6 +108,15 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ]);
             
+    }
+    public function boot(): void
+    {
+        Filament::serving(function () {
+            Filament::registerRenderHook(
+                'panels::global-search.after',
+                fn (): string => view('filament.components.kosakata-notification')->render(),
+            );
+        });
     }
     
     
