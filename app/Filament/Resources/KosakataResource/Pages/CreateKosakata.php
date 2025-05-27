@@ -13,6 +13,9 @@ class CreateKosakata extends CreateRecord
     protected static string $resource = KosakataResource::class;
     protected function mutateFormDataBeforeCreate(array $data): array
     {
+        if (auth()->user()->hasRole('mahasiswa')) {
+            $data['status'] = 'Ditinjau';
+        }
         $data['user_id'] = Auth::id(); // set user_id ke user yang sedang login
         return $data;
     }

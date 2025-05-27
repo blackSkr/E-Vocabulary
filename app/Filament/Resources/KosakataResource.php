@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\KosakataResource\Pages;
 use App\Filament\Resources\KosakataResource\RelationManagers;
 use App\Models\Kosakata;
+use App\Rules\UniqueKosakataIndo;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -51,7 +52,12 @@ class KosakataResource extends Resource
                             ->required()
                             ->maxLength(255)
                             ->placeholder('Contoh: Makan')
-                            ->columnSpanFull(),
+                            ->columnSpanFull()
+                            ->rule(new UniqueKosakataIndo())
+                            ->afterStateUpdated(fn ($state, $set) =>
+                                $set('kata_indo', ucfirst(strtolower($state)))
+                            )
+                            ->helperText('Pastikan kata ini belum ada di database.'),
 
                         Forms\Components\TextInput::make('kata_inggris')
                             ->label('Kata dalam Bahasa Inggris')
@@ -99,9 +105,13 @@ class KosakataResource extends Resource
                                 'Ditinjau' => 'Ditinjau',
                                 'Ditolak' => 'Ditolak',
                             ])
+                            ->default('Ditinjau') // <- set default saat create
                             ->disabled(fn () => !Auth::user()->hasRole('super_admin'))
+                            ->visible(fn () => Auth::user()->hasRole('super_admin')) // <- hanya admin bisa lihat
                             ->live()
+                            ->dehydrated()
                             ->columnSpanFull(),
+
                     
                         Forms\Components\Textarea::make('alasan_penolakan')
                             ->label('Alasan Penolakan')
