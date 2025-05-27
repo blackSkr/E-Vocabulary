@@ -10,6 +10,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -98,6 +99,7 @@ class KosakataResource extends Resource
                                 'Ditinjau' => 'Ditinjau',
                                 'Ditolak' => 'Ditolak',
                             ])
+                            ->disabled(fn () => !Auth::user()->hasRole('super_admin'))
                             ->columnSpanFull(),
                     ])
                     ->columns(1)

@@ -7,6 +7,7 @@
     <link rel="icon" type="image/png" href="/images/logo/Logo_Polnes_2015-sekarang.png">
     {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preload" as="image" href="/assets/background/bg-2.svg" type="image/svg+xml">
 
     @stack('styles')
         @vite('resources/css/app.css')
