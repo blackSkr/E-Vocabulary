@@ -36,7 +36,7 @@ class StatsOverviewWidget extends BaseWidget
         })->count();
 
         $approvedKosakata = (clone $query)->where('status', 'Disetujui')->count();
-
+        $kosakataDitolak = (clone $query)->where('status', 'Ditolak')->count();
         return [
             Stat::make('Total Kosakata', $totalKosakata)
                 ->description('Jumlah total entri kosakata')
@@ -55,6 +55,11 @@ class StatsOverviewWidget extends BaseWidget
                 ->descriptionIcon('heroicon-m-check-circle')
                 ->chart([2, 3, 6, 7, 6, 8, 10])
                 ->color('info'),
+            Stat::make('Kosakata Ditolak', $kosakataDitolak)
+                ->description('Dengan status Ditolak')
+                ->descriptionIcon('heroicon-m-x-mark')
+                ->chart([2, 3, 6, 7, 6, 8, 10])
+                ->color('danger'),
         ];
     }
 }
