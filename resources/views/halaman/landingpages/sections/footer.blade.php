@@ -71,7 +71,12 @@
                 <span>Laporan</span>
             </a>
         </div>
-
+        <div class="text-center">
+            <a href="/tanya-ai" class="flex justify-center items-center space-x-2 bg-white text-gray-800 px-3 py-1.5 rounded-lg shadow-lg hover:bg-gray-100 transform hover:scale-105 transition text-sm">
+                <i class="fas fa-robot text-green-600"></i>
+                <span>Tanya Alexandra</span>
+            </a>
+        </div>
         <button class="flex items-center space-x-2 bg-white text-gray-800 px-3 py-1.5 rounded-lg shadow-lg hover:bg-gray-100 transform hover:scale-105 transition text-sm">
             <i class="fas fa-phone text-green-600"></i>
             <span>Kontak</span>

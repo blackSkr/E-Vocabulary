@@ -1,0 +1,9 @@
+Step by step mulai project
+
+
+cd Project/UPTVocabSipil
+source venv/bin/activate
+cd ai-api
+python app.py
+serve
+npm run dev
