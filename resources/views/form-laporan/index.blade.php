@@ -55,7 +55,7 @@
             <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
                 <i class="fas fa-flag text-white text-2xl"></i>
             </div>
-            <h1 class="text-3xl font-bold text-gray-800 mb-2">Incident Report</h1>
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Report Pages</h1>
             <p class="text-gray-600">Please fill out the form below to submit your report</p>
         </div>
 
