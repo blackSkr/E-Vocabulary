@@ -100,6 +100,15 @@ class KosakataResource extends Resource
                                 'Ditolak' => 'Ditolak',
                             ])
                             ->disabled(fn () => !Auth::user()->hasRole('super_admin'))
+                            ->live()
+                            ->columnSpanFull(),
+                    
+                        Forms\Components\Textarea::make('alasan_penolakan')
+                            ->label('Alasan Penolakan')
+                            ->placeholder('mengapa kosakata ini ditolak ?...')
+                            ->required(fn ($get) => $get('status') === 'Ditolak') // Wajib diisi jika status Ditolak
+                            ->visible(fn ($get) => $get('status') === 'Ditolak') // Hanya tampil jika status Ditolak
+                            ->rows(4)
                             ->columnSpanFull(),
                     ])
                     ->columns(1)

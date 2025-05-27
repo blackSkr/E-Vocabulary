@@ -22,6 +22,7 @@ class Kosakata extends Model
         'contoh_penerapan',
         "contoh_gambar",
         "status",
+        "alasan_penolakan",
     ];
     public function user()
     {
