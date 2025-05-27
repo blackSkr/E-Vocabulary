@@ -131,3 +131,33 @@
         </div>
     </main>
 </section>
+
+<!-- AJAX for Filtering -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const kategoriSelect = document.getElementById('kategoriSelect');
+    const sortSelect = document.getElementById('sortSelect');
+    const resultContainer = document.getElementById('termResults');
+
+    kategoriSelect.addEventListener('change', updateResults);
+    sortSelect.addEventListener('change', updateResults);
+
+    function updateResults() {
+        const kategori = kategoriSelect.value;
+        const sort = sortSelect.value;
+        const url = new URL("{{ route('kosakata.index') }}", window.location.origin);
+        if (kategori) url.searchParams.append('kategori', kategori);
+        if (sort) url.searchParams.append('sort', sort);
+
+        fetch(url)
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const newContent = doc.querySelector('#termResults');
+                if (newContent) resultContainer.innerHTML = newContent.innerHTML;
+            })
+            .catch(error => console.error('Failed to fetch filtered data:', error));
+    }
+});
+</script>
