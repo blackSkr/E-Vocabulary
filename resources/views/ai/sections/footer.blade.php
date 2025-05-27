@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="border-t mt-6 pt-6 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-sm text-gray-500 mb-4 md:mb-0">© 2023 CivilLex. All rights reserved.</p>
+                <p class="text-sm text-gray-500 mb-4 md:mb-0">© 2025 Pams. All rights reserved.</p>
                 <div class="flex space-x-4">
                     <a href="#" class="text-sm text-gray-600 hover:text-primary transition">Privacy Policy</a>
                     <a href="#" class="text-sm text-gray-600 hover:text-primary transition">Terms of Service</a>

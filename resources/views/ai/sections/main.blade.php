@@ -1,6 +1,6 @@
 <main class="max-w-4xl mx-auto px-4 py-6">
     <div class="flex items-center justify-between mb-6">
-        <h1 class="text-2xl font-bold text-gray-800">Ask CivilLex</h1>
+        <h1 class="text-2xl font-bold text-gray-800">Ask Alexandra</h1>
         <div class="text-gray-600">{{ now()->format('H:i') }}</div>
     </div>
 
@@ -11,8 +11,8 @@
                 <i class="fas fa-robot"></i>
             </div>
             <div>
-                <h2 class="font-semibold">CivilLex Assistant</h2>
-                <p class="text-xs opacity-80">Powered by UPT Bahasa</p>
+                <h2 class="font-semibold">Alexandra Assistant</h2>
+                <p class="text-xs opacity-80">Powered by Satria</p>
             </div>
         </div>
 
@@ -45,7 +45,7 @@
                         <i class="fas fa-robot"></i>
                     </div>
                     <div class="bg-gray-100 rounded-lg px-4 py-3">
-                        <div class="typing-indicator text-gray-800">CivilLex is typing...</div>
+                        <div class="typing-indicator text-gray-800">Alexandra is typing...</div>
                     </div>
                 </div>
             @endif
@@ -69,7 +69,7 @@
                     <span class="hidden sm:inline">Send</span>
                 </button>
             </form>
-            <p class="text-xs text-gray-500 mt-2">CivilLex may produce inaccurate information about people, places, or facts.</p>
+            <p class="text-xs text-gray-500 mt-2">Alexandra may produce inaccurate information about people, places, or facts.</p>
         </div>
     </div>
 </main>

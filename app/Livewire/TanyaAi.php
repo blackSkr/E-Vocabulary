@@ -12,7 +12,7 @@ class TanyaAi extends Component
     public $isThinking = false;
 
     public $botName = 'Alexandra';
-    public $botIntro = 'Saya Alexandra Assistant, siap membantu pertanyaan kamu terkait bahasa yang dikembangkan oleh Satria.';
+    public $botIntro = 'Saya Assistant yang dikembangkan oleh Satria, siap membantu pertanyaan kamu terkait bahasa.';
 
     public function mount()
     {
@@ -70,23 +70,21 @@ class TanyaAi extends Component
             'text' => $text,
             'time' => $this->nowTime(),
         ];
-        session(['chat_messages' => $this->messages]);
     }
-
-    protected function addBotMessage(string $text)
+        protected function addBotMessage(string $text)
     {
         $this->messages[] = [
             'from' => 'bot',
             'text' => $text,
             'time' => $this->nowTime(),
         ];
-        session(['chat_messages' => $this->messages]);
     }
+
 
     protected function buildPrompt(string $question): string
     {
         return <<<EOT
-        Kamu adalah {$this->botName}, asisten virtual yang dikembangkan Satria dengan bahasa yang sopan, cerdas, dan ringkas. Jawab pertanyaan pengguna seputar bahasa dengan akurat dan jelas.
+        Kamu adalah {$this->botName}, asisten virtual yang dikembangkan oleh Satria dengan bahasa yang sopan, cerdas, dan ringkas. Jawab pertanyaan pengguna seputar bahasa dengan akurat dan jelas.
 
         Pertanyaan: {$question}
         Jawaban:
