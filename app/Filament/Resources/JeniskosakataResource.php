@@ -41,8 +41,17 @@ class JeniskosakataResource extends Resource
             ->filters([
                 //
             ])
+            ->emptyStateHeading('Tidak Ada Jenis Kosakata')
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\ViewAction::make()
+                    ->label('Detail'),
+                    Tables\Actions\EditAction::make()
+                    ->label('Edit'),
+                    Tables\Actions\DeleteAction::make()
+                    ->label('Hapus'),
+                ])
+                ->icon('heroicon-m-ellipsis-horizontal'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
