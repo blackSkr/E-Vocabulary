@@ -1,8 +1,8 @@
-<section id="section-main"> 
-<main class="relative py-16 bg-gradient-to-br from-blue-50 via-white to-green-50 overflow-hidden">
+<section id="section-main">
+    <main class="relative py-16 bg-gradient-to-br from-blue-50 via-white to-green-50 overflow-hidden">
         <!-- Decorative Background Grid Pattern -->
         <div class="absolute inset-0 pointer-events-none opacity-30">
-            <svg class="w-full h-full " xmlns="http://www.w3.org/2000/svg">
+            <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                     <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
                         <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="0.5" />
@@ -14,7 +14,7 @@
 
         <div class="relative container mx-auto px-6 z-10">
             <!-- Filter Section -->
-            <div class="mb-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div class="mb-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4 sr-fade-up">
                 <div>
                     <h2 class="text-3xl font-bold text-gray-800 drop-shadow-sm">Engineering Terms</h2>
                     <p class="text-sm text-gray-500">Showing {{ $terms->total() }} terms</p>
@@ -58,39 +58,39 @@
                 </form>
             </div>
 
-            <!-- Grid & Pagination (Your original structure preserved) -->
+            <!-- Grid & Pagination -->
             <div id="termResults">
                 @if ($terms->count())
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                    @foreach ($terms as $index => $term)
-                        <div class="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition {{ $index >= 3 ? 'hidden md:block' : '' }}">
-                            <div class="p-6">
-                                <div class="flex justify-between items-start mb-4">
-                                    <div>
-                                        <h3 class="text-lg font-semibold text-gray-800">{{ $term->kata_inggris }}</h3>
-                                        <p class="text-gray-600">{{ $term->kata_indo }}</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                        @foreach ($terms as $index => $term)
+                            <div class="sr-fade-up bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition {{ $index >= 3 ? 'hidden md:block' : '' }}">
+                                <div class="p-6">
+                                    <div class="flex justify-between items-start mb-4">
+                                        <div>
+                                            <h3 class="text-lg font-semibold text-gray-800">{{ $term->kata_inggris }}</h3>
+                                            <p class="text-gray-600">{{ $term->kata_indo }}</p>
+                                        </div>
+                                        <button class="bg-gray-100 text-primary p-2 rounded-full hover:bg-primary hover:text-white transition">
+                                            <i class="fas fa-volume-up"></i>
+                                        </button>
                                     </div>
-                                    <button class="bg-gray-100 text-primary p-2 rounded-full hover:bg-primary hover:text-white transition">
-                                        <i class="fas fa-volume-up"></i>
-                                    </button>
-                                </div>
-                                <p class="text-sm italic text-gray-500 mb-4">"{{ $term->contoh_penerapan }}"</p>
-                                <div class="h-40 rounded-lg overflow-hidden mb-4 bg-gray-100">
-                                    <img src="{{ asset('storage/' . $term->contoh_gambar) }}" alt="Images of {{ $term->kata_inggris }}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
-                                </div>
-                                <div class="flex justify-between text-xs text-gray-500">
-                                    <span class="bg-gray-100 px-3 py-1 rounded-full">{{ $term->jenis_kosakata->jenis_kosakata ?? 'Uncategorized' }}</span>
-                                    <span>{{ $term->views ?? 0 }} views</span>
+                                    <p class="text-sm italic text-gray-500 mb-4">"{{ $term->contoh_penerapan }}"</p>
+                                    <div class="h-40 rounded-lg overflow-hidden mb-4 bg-gray-100">
+                                        <img src="{{ asset('storage/' . $term->contoh_gambar) }}" alt="Images of {{ $term->kata_inggris }}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                                    </div>
+                                    <div class="flex justify-between text-xs text-gray-500">
+                                        <span class="bg-gray-100 px-3 py-1 rounded-full">{{ $term->jenis_kosakata->jenis_kosakata ?? 'Uncategorized' }}</span>
+                                        <span>{{ $term->views ?? 0 }} views</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
-                </div>
+                        @endforeach
+                    </div>
 
-
-                    <!-- ORIGINAL Pagination (Tidak Diubah) -->
+                    <!-- Pagination -->
                     <div class="mt-10 flex justify-center">
                         <nav class="flex items-center space-x-1 text-sm">
+                            {{-- Previous --}}
                             @if ($terms->onFirstPage())
                                 <span class="px-3 py-2 rounded-full bg-gray-100 text-gray-400">
                                     <i class="fas fa-chevron-left"></i>
@@ -101,6 +101,7 @@
                                 </a>
                             @endif
 
+                            {{-- Page Numbers --}}
                             @for ($i = 1; $i <= $terms->lastPage(); $i++)
                                 @if ($i == $terms->currentPage())
                                     <span class="px-3 py-2 rounded-full bg-green-600 text-white font-semibold">{{ $i }}</span>
@@ -111,6 +112,7 @@
                                 @endif
                             @endfor
 
+                            {{-- Next --}}
                             @if ($terms->hasMorePages())
                                 <a href="{{ $terms->nextPageUrl() }}" class="px-3 py-2 rounded-full border border-gray-300 text-gray-600 hover:bg-primary hover:text-white transition">
                                     <i class="fas fa-chevron-right"></i>
@@ -129,32 +131,3 @@
         </div>
     </main>
 </section>
-<!-- AJAX for Filtering -->
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const kategoriSelect = document.getElementById('kategoriSelect');
-    const sortSelect = document.getElementById('sortSelect');
-    const resultContainer = document.getElementById('termResults');
-
-    kategoriSelect.addEventListener('change', updateResults);
-    sortSelect.addEventListener('change', updateResults);
-
-    function updateResults() {
-        const kategori = kategoriSelect.value;
-        const sort = sortSelect.value;
-        const url = new URL("{{ route('kosakata.index') }}", window.location.origin);
-        if (kategori) url.searchParams.append('kategori', kategori);
-        if (sort) url.searchParams.append('sort', sort);
-
-        fetch(url)
-            .then(response => response.text())
-            .then(html => {
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                const newContent = doc.querySelector('#termResults');
-                if (newContent) resultContainer.innerHTML = newContent.innerHTML;
-            })
-            .catch(error => console.error('Failed to fetch filtered data:', error));
-    }
-});
-</script>

@@ -75,37 +75,34 @@
 <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
     <script>
         //scroll halus
-            document.querySelectorAll('a.nav-link[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
+            document.addEventListener('click', function(e) {
+        const link = e.target.closest('a[href^="#"]');
+        if (!link) return; // Bukan <a> link internal
+        const href = link.getAttribute('href');
 
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
+        if (href.length > 1 && document.querySelector(href)) {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
             });
-    //scroll halus Mobile
-        document.querySelectorAll('a.nav-mobile-link[href^="#"]').forEach(link => {
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+        }
+    });
+
+    // animasi
+        ScrollReveal().reveal('.sr-fade-up', {
+        distance: '40px',
+        origin: 'bottom',
+        duration: 800,
+        easing: 'ease-out',
+        interval: 150,
+        reset: false // kalau true, animasi ulang tiap scroll
+    });
 
 
 
 
-        // Mobile menu toggle
         // Toggle Mobile Menu
         document.getElementById('menu-toggle').addEventListener('click', function () {
             const menu = document.getElementById('mobile-menu');
