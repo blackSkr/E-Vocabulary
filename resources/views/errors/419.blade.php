@@ -38,7 +38,6 @@
 </head>
 <body class="bg-gray-50 min-h-screen flex flex-col items-center justify-center p-4 font-sans">
     <div class="max-w-md w-full text-center space-y-8">
-        <!-- Animated 404 graphic -->
         <div class="relative">
             <div class="absolute inset-0 flex items-center justify-center">
                 <div class="w-48 h-48 rounded-full bg-primary bg-opacity-10"></div>
