@@ -1,10 +1,12 @@
+#pakai model mistrail
 from flask import Flask, request, jsonify
+
 import requests
 
 app = Flask(__name__)
 
-# Ganti ini dengan API key kamu dari https://openrouter.ai
-API_KEY = "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"  # simpan di .env atau variabel lingkungan kalau produksi
+
+API_KEY = "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"  
 
 @app.route('/ask', methods=['POST'])
 def ask():
@@ -28,7 +30,7 @@ def ask():
                 "messages": [
                     {
                         "role": "system",
-                        "content": "Kamu adalah asisten AI teknik sipil yang santai, cerdas, dan bisa menerjemahkan antara bahasa Indonesia dan Inggris."
+                        "content": "Kamu adalah asisten AI teknik sipil yang dikembangkan oleh Satria dengan bahasa yang santai, cerdas, dan bisa menerjemahkan antara bahasa Indonesia dan Inggris."
                     },
                     {
                         "role": "user",
