@@ -1,3 +1,5 @@
+# pakai Ollama Gemma 2b
+
 from flask import Flask, request, jsonify
 import requests
 
